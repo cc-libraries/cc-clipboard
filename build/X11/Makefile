@@ -8,13 +8,13 @@ TEST_DIR = $(PRO_DIR)/test
 X11_SRC = $(SRC_DIR)/clipboard_x11.cc
 SRC = $(SRC_DIR)/clipboard.cc
 CFLAGS = -shared -fPIC 
-TARGET = $(OUT_DIR)/clipboard.so
+TARGET = $(OUT_DIR)/libclipboard.so
 OBJS = $(OUT_DIR)/clipboard.o
 OBJS_X11 = $(OUT_DIR)/clipboard_x11.o
 # OBJS_MAC =  clipboard_mac.o
 
 ${TARGET}:
-	$(CC) $(CFLAGS) $(X11_SRC) $(SRC) -o $(TARGET)
+	$(CC) $(CFLAGS) -o $(TARGET) $(X11_SRC) $(SRC)
 $(OBJS_X11):%.o:$(SRC_DIR)/clipboard_x11.cc
 	$(CC) -c $(CFLAGS) $< -o $@
 $(OBJS):%.o:$(SRC_DIR)/clipboard.cc
@@ -23,9 +23,13 @@ $(OBJS):%.o:$(SRC_DIR)/clipboard.cc
 # 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf $(OUT_DIR)*
+	rm -rf $(OUT_DIR)/*
 
 test:
-	$(CC) $(X11_SRC) $(SRC) $(TEST_DIR)/test.cc -o $(OUT_DIR)/test
 	$(OUT_DIR)/test
 
+export_lib:
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(OUT_DIR)
+
+dynamic_test:
+	$(CC) -o $(OUT_DIR)/test $(TEST_DIR)/test.cc -L$(OUT_DIR) -lclipboard
