@@ -3,6 +3,7 @@ PRO_DIR = ../..
 INC_DIR = $(PRO_DIR)/inc
 SRC_DIR = $(PRO_DIR)/src
 OUT_DIR = $(PRO_DIR)/out
+TEST_DIR = $(PRO_DIR)/test
 # OUT_OBJ_DIR = $(OUT_DIR)/obj
 X11_SRC = $(SRC_DIR)/clipboard_x11.cc
 SRC = $(SRC_DIR)/clipboard.cc
@@ -23,3 +24,8 @@ $(OBJS):%.o:$(SRC_DIR)/clipboard.cc
 
 clean:
 	rm -rf $(OUT_DIR)*
+
+test:
+	$(CC) $(X11_SRC) $(SRC) $(TEST_DIR)/test.cc -o $(OUT_DIR)/test
+	$(OUT_DIR)/test
+
