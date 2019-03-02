@@ -7,14 +7,16 @@ TEST_DIR = $(PRO_DIR)/test
 # OUT_OBJ_DIR = $(OUT_DIR)/obj
 X11_SRC = $(SRC_DIR)/clipboard_x11.cc
 SRC = $(SRC_DIR)/clipboard.cc
-CFLAGS = -shared -fPIC 
+GTK_CFLAGS = `pkg-config --cflags gtk+-3.0`
+GTK_LIB = `pkg-config --libs gtk+-3.0`
+CFLAGS = $(GTK_CFLAGS) -shared -fPIC 
 TARGET = $(OUT_DIR)/libclipboard.so
 OBJS = $(OUT_DIR)/clipboard.o
 OBJS_X11 = $(OUT_DIR)/clipboard_x11.o
 # OBJS_MAC =  clipboard_mac.o
 
 ${TARGET}:
-	$(CC) $(CFLAGS) -o $(TARGET) $(X11_SRC) $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(X11_SRC) $(SRC) $(GTK_LIB)
 $(OBJS_X11):%.o:$(SRC_DIR)/clipboard_x11.cc
 	$(CC) -c $(CFLAGS) $< -o $@
 $(OBJS):%.o:$(SRC_DIR)/clipboard.cc

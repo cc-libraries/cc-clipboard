@@ -13,6 +13,8 @@
 #ifndef CCLIB_CCSYS_API_CLIPBOARD_X11_H_
 #define CCLIB_CCSYS_API_CLIPBOARD_X11_H_
 
+#include <gtk/gtk.h>
+
 #include "clipboard.h"
 
 namespace cclib {
