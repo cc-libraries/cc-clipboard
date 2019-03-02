@@ -12,19 +12,23 @@
 
 #include "../inc/clipboard_x11.h"
 
-namespace cclib{
+namespace cclib {
 
-ClipboardX11::ClipboardX11() {
-    //TODO: ClipboardX11
-}
-ClipboardX11::~ClipboardX11() {
-    //TODO: ClipboardX11
-}
+    namespace ccsys_api {
 
-size_t ClipboardX11::foo() {
-    size_t value = flag;
+        ClipboardX11::ClipboardX11() {
+            //TODO: ClipboardX11
+        }
+        ClipboardX11::~ClipboardX11() {
+            //TODO: ClipboardX11
+        }
 
-    return value;
-}
+        int ClipboardX11::foo() {
+            int value = flag;
 
-}
+            return value;
+        }
+
+    }   //namespace ccsys_api
+
+}   //namespace cclib

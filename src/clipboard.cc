@@ -14,8 +14,17 @@
 
 namespace cclib {
 
-Clipboard::Clipboard() {
-    //TODO: CLipboard
-    flag = -1;
-}
+        namespace ccsys_api {
+
+            Clipboard::Clipboard() {
+                //TODO: CLipboard
+                flag = -1;
+            }
+
+            Clipboard::~Clipboard() {
+                //TODO:
+            }
+
+        }   //namespace ccsys_api
+
 } //namespace cclib

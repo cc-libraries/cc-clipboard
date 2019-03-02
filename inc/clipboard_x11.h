@@ -10,23 +10,27 @@
  * author: hello_chenchen <https://github.com/hello-chenchen>
  **********************************************************************************/
 
-#ifndef CCLIB_CLIPBOARD_X11_H_
-#define CCLIB_CLIPBOARD_X11_H_
+#ifndef CCLIB_CCSYS_API_CLIPBOARD_X11_H_
+#define CCLIB_CCSYS_API_CLIPBOARD_X11_H_
 
 #include "clipboard.h"
 
 namespace cclib {
 
-class ClipboardX11 : public Clipboard {
+    namespace ccsys_api {
 
-    public:
-        ClipboardX11();
-        ~ClipboardX11();
+        class ClipboardX11 : public Clipboard {
 
-    public:
-        size_t foo();
-};  //class ClipboardX11
+            public:
+                ClipboardX11();
+                ~ClipboardX11();
+
+            public:
+                int foo();
+        };  //class ClipboardX11
+
+    }   //namespace ccsys
 
 }   //namespace cclib
 
-#endif  //CCLIB_CLIPBOARD_X11_H_
+#endif  //CCLIB_CCSYS_API_CLIPBOARD_X11_H_

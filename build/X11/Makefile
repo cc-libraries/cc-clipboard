@@ -1,21 +1,25 @@
 CC = g++
-PRO_DIR = ../../
+PRO_DIR = ../..
 INC_DIR = $(PRO_DIR)/inc
 SRC_DIR = $(PRO_DIR)/src
-CFLAGS = -g -I $(PRO_DIR)/inc
-TARGET = main
-OBJS = clipboard.o
-OBJS_X11 = clipboard_x11.o
+OUT_DIR = $(PRO_DIR)/out
+# OUT_OBJ_DIR = $(OUT_DIR)/obj
+X11_SRC = $(SRC_DIR)/clipboard_x11.cc
+SRC = $(SRC_DIR)/clipboard.cc
+CFLAGS = -shared -fPIC 
+TARGET = $(OUT_DIR)/clipboard.so
+OBJS = $(OUT_DIR)/clipboard.o
+OBJS_X11 = $(OUT_DIR)/clipboard_x11.o
 # OBJS_MAC =  clipboard_mac.o
 
-${TARGET}:${OBJS_X11} ${OBJS}
-	$(CC) -o $(TARGET) $(OBJS_X11) $(CFLAGS)
+${TARGET}:
+	$(CC) $(CFLAGS) $(X11_SRC) $(SRC) -o $(TARGET)
 $(OBJS_X11):%.o:$(SRC_DIR)/clipboard_x11.cc
 	$(CC) -c $(CFLAGS) $< -o $@
- $(OBJS):%.o:$(SRC_DIR)/clipboard.cc
+$(OBJS):%.o:$(SRC_DIR)/clipboard.cc
 	$(CC) -c $(CFLAGS) $< -o $@
 # $(OBJS_MAC):%.o:$(SRC_DIR)/%.mm
 # 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf $(TARGET) *.o
+	rm -rf $(OUT_DIR)*

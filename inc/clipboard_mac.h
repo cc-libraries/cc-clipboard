@@ -10,8 +10,8 @@
  * author: hello_chenchen <https://github.com/hello-chenchen>
  **********************************************************************************/
 
-#ifndef CCLIB_CLIPBOARD_MAC_H_
-#define CCLIB_CLIPBOARD_MAC_H_
+#ifndef CCLIB_CCSYS_API_CLIPBOARD_MAC_H_
+#define CCLIB_CCSYS_API_CLIPBOARD_MAC_H_
 
 // #include <AppKit/AppKit.h>
 // #include <AppKit/NSPasteboard.h>
@@ -21,16 +21,20 @@
 
 namespace cclib {
 
-class ClipboardMac : public Clipboard {
+    namespace ccsys_api {
+        class ClipboardMac : public Clipboard {
 
-    public:
-        ClipboardMac();
-        ~ClipboardMac();
+            public:
+                ClipboardMac();
+                ~ClipboardMac();
 
-    public:
-        size_t foo();
-};  //class ClipboardMac
+            public:
+                int foo();
+        };  //class ClipboardMac
+    }
+
+
 
 }   //namespace cclib
 
-#endif
+#endif  //CCLIB_CCSYS_API_CLIPBOARD_MAC_H_

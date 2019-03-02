@@ -16,21 +16,25 @@
 
 #include "clipboard_mac.h"
 
-namespace cclib{
+namespace cclib {
 
-ClipboardMac::ClipboardMac() {
-    //TODO: ClipboardMac
-}
+    namespace ccsys_api {
 
-ClipboardMac::~ClipboardMac() {
-    //TODO: ~ClipboardMac
-}
+        ClipboardMac::ClipboardMac() {
+            //TODO: ClipboardMac
+        }
 
-size_t ClipboardMac::foo() {
-    NSInteger value = flag;
-    NSLog(@"CLipboardMac foo function");
+        ClipboardMac::~ClipboardMac() {
+            //TODO: ~ClipboardMac
+        }
 
-    return value;
-}
+        int ClipboardMac::foo() {
+            NSInteger value = flag;
+            NSLog(@"CLipboardMac foo function");
 
-}
+            return value;
+        }
+
+    }   //namespace ccsys_api
+
+}   //namespace cclib
