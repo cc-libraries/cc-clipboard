@@ -13,7 +13,11 @@
 #ifndef CCLIB_CCSYS_API_CLIPBOARD_H_
 #define CCLIB_CCSYS_API_CLIPBOARD_H_
 
+#include <iostream>
+
 #include "base/os.h"
+
+using namespace std;
 
 namespace cclib {
 

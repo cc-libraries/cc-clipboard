@@ -18,6 +18,11 @@ namespace cclib {
 
         ClipboardX11::ClipboardX11() {
             //TODO: ClipboardX11
+            GtkClipboard* gtkClipboardInstance = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+
+            int retValue = g_signal_connect (gtkClipboardInstance, "owner-change", G_CALLBACK (foo()), NULL);
+
+            cout << "ClipboardX11 retValue: " << retValue << endl;
         }
         ClipboardX11::~ClipboardX11() {
             //TODO: ClipboardX11
@@ -25,6 +30,8 @@ namespace cclib {
 
         int ClipboardX11::foo() {
             int value = flag;
+
+            cout << "foo value: " << value << endl;
 
             return value;
         }

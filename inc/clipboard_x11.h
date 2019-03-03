@@ -14,6 +14,8 @@
 #define CCLIB_CCSYS_API_CLIPBOARD_X11_H_
 
 #include <gtk/gtk.h>
+#include <gtk/gtkclipboard.h>
+#include <gtk/gtkselection.h>
 
 #include "clipboard.h"
 

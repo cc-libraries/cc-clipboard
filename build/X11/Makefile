@@ -9,7 +9,7 @@ X11_SRC = $(SRC_DIR)/clipboard_x11.cc
 SRC = $(SRC_DIR)/clipboard.cc
 GTK_CFLAGS = `pkg-config --cflags gtk+-3.0`
 GTK_LIB = `pkg-config --libs gtk+-3.0`
-CFLAGS = $(GTK_CFLAGS) -shared -fPIC 
+CFLAGS = $(GTK_CFLAGS) -shared -fPIC
 TARGET = $(OUT_DIR)/libclipboard.so
 OBJS = $(OUT_DIR)/clipboard.o
 OBJS_X11 = $(OUT_DIR)/clipboard_x11.o
@@ -34,4 +34,4 @@ export_lib:
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(OUT_DIR)
 
 dynamic_test:
-	$(CC) -o $(OUT_DIR)/test $(TEST_DIR)/test.cc -L$(OUT_DIR) -lclipboard
+	$(CC) $(CFLAGS) -o $(OUT_DIR)/test $(TEST_DIR)/test.cc -L$(OUT_DIR) -lclipboard $(GTK_LIB)
