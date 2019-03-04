@@ -18,11 +18,18 @@ namespace cclib {
 
             Clipboard::Clipboard() {
                 //TODO: CLipboard
-                flag = -1;
+                init();
             }
 
             Clipboard::~Clipboard() {
                 //TODO:
+            }
+
+            bool Clipboard::init() {
+                cout << "call Clipboard::init" << endl;
+
+                flag = -1;
+                return false;
             }
 
         }   //namespace ccsys_api

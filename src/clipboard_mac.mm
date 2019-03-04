@@ -22,10 +22,16 @@ namespace cclib {
 
         ClipboardMac::ClipboardMac() {
             //TODO: ClipboardMac
+            init();
         }
 
         ClipboardMac::~ClipboardMac() {
             //TODO: ~ClipboardMac
+        }
+
+        bool ClipboardMac::init() {
+            cout << "call ClipboardMac::init" << endl;
+            return true;
         }
 
         int ClipboardMac::foo() {
