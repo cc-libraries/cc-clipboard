@@ -14,7 +14,7 @@
 #include <AppKit/NSPasteboard.h>
 #include <Foundation/Foundation.h>
 
-#include "clipboard_mac.h"
+#include "../inc/clipboard_mac.h"
 
 namespace cclib {
 

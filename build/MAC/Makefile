@@ -5,19 +5,18 @@ SRC_DIR = $(PRO_DIR)/src
 OUT_DIR = $(PRO_DIR)/out
 TEST_DIR = $(PRO_DIR)/test
 # OUT_OBJ_DIR = $(OUT_DIR)/obj
-X11_SRC = $(SRC_DIR)/clipboard_x11.cc
+MAC_SRC = $(SRC_DIR)/clipboard_mac.mm
 SRC = $(SRC_DIR)/clipboard.cc
-GTK_CFLAGS = `pkg-config --cflags gtk+-3.0`
-GTK_LIB = `pkg-config --libs gtk+-3.0`
-CFLAGS = $(GTK_CFLAGS) -shared -fPIC
+MAC_CFLAGS = -framework AppKit -framework Foundation
+CFLAGS = $(MAC_CFLAGS) -shared -fPIC
 TARGET = $(OUT_DIR)/libclipboard.so
 OBJS = $(OUT_DIR)/clipboard.o
-OBJS_X11 = $(OUT_DIR)/clipboard_x11.o
+OBJS_MAC = $(OUT_DIR)/clipboard_mac.o
 # OBJS_MAC =  clipboard_mac.o
 
 ${TARGET}:
-	$(CC) $(CFLAGS) -o $(TARGET) $(X11_SRC) $(SRC) $(GTK_LIB)
-$(OBJS_X11):%.o:$(SRC_DIR)/clipboard_x11.cc
+	$(CC) $(CFLAGS) -o $(TARGET) $(MAC_SRC) $(SRC)
+$(OBJS_MAC):%.o:$(SRC_DIR)/clipboard_mac.mm
 	$(CC) -c $(CFLAGS) $< -o $@
 $(OBJS):%.o:$(SRC_DIR)/clipboard.cc
 	$(CC) -c $(CFLAGS) $< -o $@
@@ -28,10 +27,7 @@ clean:
 	rm -rf $(OUT_DIR)/*
 
 test:
-	$(OUT_DIR)/test_x11
-
-export_lib:
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(OUT_DIR)
+	$(OUT_DIR)/test_mac
 
 dynamic_test:
-	$(CC) -o $(OUT_DIR)/test_x11 $(TEST_DIR)/test_x11.cc -L$(OUT_DIR) -lclipboard $(GTK_LIB)
+	$(CC) -o $(OUT_DIR)/test_mac $(TEST_DIR)/test_mac.cc -L$(OUT_DIR) -lclipboard
