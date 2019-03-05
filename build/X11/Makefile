@@ -31,7 +31,7 @@ test:
 	$(OUT_DIR)/test_x11
 
 export_lib:
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(OUT_DIR)
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./$(OUT_DIR)
 
 dynamic_test:
 	$(CC) $(GTK_CFLAGS) -o $(OUT_DIR)/test_x11 $(TEST_DIR)/test_x11.cc -L$(OUT_DIR) -lclipboard $(GTK_LIB)
