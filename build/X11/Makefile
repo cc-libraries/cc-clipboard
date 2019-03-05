@@ -27,6 +27,9 @@ $(OBJS):%.o:$(SRC_DIR)/clipboard.cc
 clean:
 	rm -rf $(OUT_DIR)/*
 
+clean_test:
+	rm $(OUT_DIR)/test_x11
+
 test:
 	$(OUT_DIR)/test_x11
 

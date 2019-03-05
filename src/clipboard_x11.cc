@@ -18,11 +18,18 @@ namespace cclib {
 
         ClipboardX11::ClipboardX11() {
             //TODO: ClipboardX11
+
+            cout << "GDK_SELECTION_CLIPBOARD: " << GDK_SELECTION_CLIPBOARD << endl;
+
             GtkClipboard* gtkClipboardInstance = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+
+            cout << "gtkClipboardInstance1: " << gtkClipboardInstance << endl;
 
             int retValue = g_signal_connect (gtkClipboardInstance, "owner-change", G_CALLBACK (foo()), NULL);
 
             cout << "ClipboardX11 retValue: " << retValue << endl;
+
+            // system("pause");
         }
         ClipboardX11::~ClipboardX11() {
             //TODO: ClipboardX11
