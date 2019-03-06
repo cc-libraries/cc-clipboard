@@ -25,11 +25,11 @@ namespace cclib {
                 //TODO:
             }
 
-            bool Clipboard::init() {
+            int Clipboard::init() {
                 cout << "call Clipboard::init" << endl;
 
                 flag = -1;
-                return false;
+                return flag;
             }
 
         }   //namespace ccsys_api

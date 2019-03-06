@@ -30,6 +30,7 @@ namespace cclib {
                 ~ClipboardX11();
 
             public:
+                int init();
                 int foo();
         };  //class ClipboardX11
 

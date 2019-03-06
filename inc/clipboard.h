@@ -29,7 +29,7 @@ namespace cclib {
                 virtual ~Clipboard() = 0;
 
             public:
-                virtual bool init();
+                virtual int init() = 0;
                 virtual int foo() = 0;
 
             protected:

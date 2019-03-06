@@ -18,6 +18,15 @@ namespace cclib {
 
         ClipboardX11::ClipboardX11() {
             //TODO: ClipboardX11
+            init();
+        }
+
+        ClipboardX11::~ClipboardX11() {
+            //TODO: ClipboardX11
+        }
+
+        int ClipboardX11::init() {
+            gtk_init(NULL, NULL);
 
             cout << "GDK_SELECTION_CLIPBOARD: " << GDK_SELECTION_CLIPBOARD << endl;
 
@@ -25,22 +34,15 @@ namespace cclib {
 
             cout << "gtkClipboardInstance1: " << gtkClipboardInstance << endl;
 
-            int retValue = g_signal_connect (gtkClipboardInstance, "owner-change", G_CALLBACK (foo()), NULL);
+            int retValue = g_signal_connect (gtkClipboardInstance, "owner-change", G_CALLBACK (&ClipboardX11::foo), NULL);
 
             cout << "ClipboardX11 retValue: " << retValue << endl;
-
-            // system("pause");
-        }
-        ClipboardX11::~ClipboardX11() {
-            //TODO: ClipboardX11
         }
 
         int ClipboardX11::foo() {
-            int value = flag;
+            cout << "foo value: " << flag << endl;
 
-            cout << "foo value: " << value << endl;
-
-            return value;
+            return flag;
         }
 
     }   //namespace ccsys_api

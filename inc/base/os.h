@@ -20,4 +20,4 @@ namespace cclib {
 #endif /* IS_MACOSX */
 }
 
-#endif CCLIB_OS_H_ // CCLIB_OS_H_
+#endif // CCLIB_OS_H_
