@@ -14,5 +14,9 @@ int main(int argc, char const *argv[])
 
     cout << value << endl;
 
+    char name[1024];
+    cout << "enter input: " << endl;
+    cin>>name;
+
     return 0;
 }

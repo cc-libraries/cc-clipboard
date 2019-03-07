@@ -13,9 +13,9 @@
 #ifndef CCLIB_CCSYS_API_CLIPBOARD_MAC_H_
 #define CCLIB_CCSYS_API_CLIPBOARD_MAC_H_
 
-// #include <AppKit/AppKit.h>
-// #include <AppKit/NSPasteboard.h>
-// #include <Foundation/Foundation.h>
+#include <AppKit/AppKit.h>
+#include <AppKit/NSPasteboard.h>
+#include <Foundation/Foundation.h>
 
 #include "clipboard.h"
 
@@ -30,7 +30,7 @@ namespace cclib {
 
             public:
                 int foo();
-            void startClipboardMonitor();
+                void startClipboardMonitor();
         };  //class ClipboardMac
     }
 

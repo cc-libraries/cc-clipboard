@@ -30,4 +30,4 @@ test:
 	$(OUT_DIR)/test_mac
 
 dltest:
-	$(CC) -o $(OUT_DIR)/test_mac $(TEST_DIR)/test_mac.cc -L$(OUT_DIR) -lclipboard
+	$(CC) $(MAC_CFLAGS) -o $(OUT_DIR)/test_mac $(TEST_DIR)/test_mac.mm -L$(OUT_DIR) -lclipboard
