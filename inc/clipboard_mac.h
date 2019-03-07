@@ -29,8 +29,8 @@ namespace cclib {
                 ~ClipboardMac();
 
             public:
-                bool init();
                 int foo();
+            void startClipboardMonitor();
         };  //class ClipboardMac
     }
 

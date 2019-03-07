@@ -26,12 +26,13 @@ namespace cclib {
         class Clipboard {
             public:
                 Clipboard();
-                virtual ~Clipboard() = 0;
+                virtual ~Clipboard();
 
             public:
-                virtual int init() = 0;
+                int init();
                 virtual int foo() = 0;
 
+            virtual void startClipboardMonitor();
             protected:
                 int flag;
         }; //class clipboard

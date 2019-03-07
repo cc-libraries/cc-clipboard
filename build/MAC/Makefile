@@ -29,5 +29,5 @@ clean:
 test:
 	$(OUT_DIR)/test_mac
 
-dynamic_test:
+dltest:
 	$(CC) -o $(OUT_DIR)/test_mac $(TEST_DIR)/test_mac.cc -L$(OUT_DIR) -lclipboard

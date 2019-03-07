@@ -29,18 +29,16 @@ namespace cclib {
             //TODO: ~ClipboardMac
         }
 
-        bool ClipboardMac::init() {
-            cout << "call ClipboardMac::init" << endl;
-            return true;
-        }
-
         int ClipboardMac::foo() {
-            NSInteger value = flag;
+            int value = flag;
             NSLog(@"CLipboardMac foo function");
 
             return value;
         }
 
+        void ClipboardMac::startClipboardMonitor() {
+            cout << "call ClipboardMac::startClipboardMonitor" << endl;
+        }
     }   //namespace ccsys_api
 
 }   //namespace cclib
