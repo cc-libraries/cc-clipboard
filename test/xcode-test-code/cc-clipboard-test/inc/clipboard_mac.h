@@ -29,13 +29,12 @@ namespace cclib {
             ~ClipboardMac();
             
         public:
-            bool init();
             int foo();
+            
+            void startClipboardMonitor();
+
         };  //class ClipboardMac
     }
-    
-    
-    
 }   //namespace cclib
 
 #endif  //CCLIB_CCSYS_API_CLIPBOARD_MAC_H_

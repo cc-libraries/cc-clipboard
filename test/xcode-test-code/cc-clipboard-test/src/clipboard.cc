@@ -28,8 +28,15 @@ namespace cclib {
         bool Clipboard::init() {
             cout << "call Clipboard::init" << endl;
             
+            startClipboardMonitor();
             flag = -1;
             return false;
+        }
+        
+        void Clipboard::startClipboardMonitor() {
+            //TODO:
+            cout << "call Clipboard::startClipboardMonitor" << endl;
+            
         }
         
     }   //namespace ccsys_api

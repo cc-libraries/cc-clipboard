@@ -9,7 +9,7 @@ int main(int argc, char const *argv[])
 {
     /* code */
     Clipboard* cc = new ClipboardMac();
-    
+
     int value = cc->foo();
     
     cout << value << endl;
