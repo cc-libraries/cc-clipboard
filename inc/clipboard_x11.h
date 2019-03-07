@@ -23,17 +23,19 @@ namespace cclib {
 
     namespace ccsys_api {
 
-        class ClipboardX11 : public Clipboard {
+        extern "C" {
+            class ClipboardX11 : public Clipboard {
 
-            public:
-                ClipboardX11();
-                ~ClipboardX11();
+                public:
+                    ClipboardX11();
+                    ~ClipboardX11();
 
-            public:
-                int init();
-                int foo();
-        };  //class ClipboardX11
+                public:
+                    int foo();
+                    void startClipboardMonitor();
+            };  //class ClipboardX11
 
+        }
     }   //namespace ccsys
 
 }   //namespace cclib
