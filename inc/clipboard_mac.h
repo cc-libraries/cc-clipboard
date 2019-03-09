@@ -29,8 +29,17 @@ namespace cclib {
                 ~ClipboardMac();
 
             public:
+                int init();
                 int foo();
                 void startClipboardMonitor();
+
+            private:
+                int isClipboardDataChanged();
+                ClipboardData* getClipboardData();
+
+            private:
+                NSPasteboard* pasteboard;
+                NSInteger changeCount;
         };  //class ClipboardMac
     }
 

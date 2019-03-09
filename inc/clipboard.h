@@ -16,6 +16,7 @@
 #include <iostream>
 
 #include "base/os.h"
+#include "base/clipboard_define.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ namespace cclib {
                 int init();
                 virtual int foo() = 0;
 
-            virtual void startClipboardMonitor();
+                virtual void startClipboardMonitor();
             protected:
                 int flag;
         }; //class clipboard
