@@ -22,6 +22,7 @@
 namespace cclib {
 
     namespace ccsys_api {
+
         class ClipboardMac : public Clipboard {
 
             public:
@@ -35,11 +36,14 @@ namespace cclib {
 
             private:
                 int isClipboardDataChanged();
-                ClipboardData* getClipboardData();
+                NSUInteger getCurrentContentNameHash();
+                ClipboardData* getCurrentClipboardData();
 
             private:
                 NSPasteboard* pasteboard;
-                NSInteger changeCount;
+                NSInteger lastChangeCount;
+                NSUInteger lastHash;
+
         };  //class ClipboardMac
     }
 

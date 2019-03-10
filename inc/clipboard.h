@@ -17,6 +17,7 @@
 
 #include "base/os.h"
 #include "base/clipboard_define.h"
+#include "base/common_define.h"
 
 using namespace std;
 

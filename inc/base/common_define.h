@@ -10,29 +10,29 @@
  * author: hello_chenchen <https://github.com/hello-chenchen>
  **********************************************************************************/
 
-#ifndef CCLIB_CCSYS_API_CLIPBOARD_DEFINE_H
-#define CCLIB_CCSYS_API_CLIPBOARD_DEFINE_H
+#ifndef CCLIB_CCSYS_API_COMMON_DEFINE_H
+#define CCLIB_CCSYS_API_COMMON_DEFINE_H
 
-namespace cclib {
+#define CC_NULL NULL
+#define CC_SUCCESS 1
+#define CC_FAILED 0
+#define CC_UI_FAILED -1
+#define CC_UI_VALID_INIT 0
+#define CC_UI_INVALID_INIT -1
 
-    namespace ccsys_api {
+#define IS_POINT_NULL_POINT(point) \
+if(NULL == point) {\
+    return CC_NULL;\
+}\
 
-        enum ClipboardType {
-            /* type */
-            EN_CB_TEXT,
-            EN_CB_FILES
-        };  //ClipboardType
+#define IS_POINT_NULL_INT(point) \
+if(NULL == point) {\
+    return CC_FAILED;\
+}\
 
-        struct ClipboardData
-        {
-            /* data */
-            ClipboardType type;
-            int length;
-            void* data;
-        };  //ClipboardData
+#define IS_POINT_NULL_UINT(point) \
+if(NULL == point) {\
+    return CC_UI_FAILED;\
+}\
 
-    }   //ccsys_api
-
-}   //cclib
-
-#endif //CCLIB_CCSYS_API_CLIPBOARD_DEFINE_H
+#endif //CCLIB_CCSYS_API_COMMON_DEFINE_H

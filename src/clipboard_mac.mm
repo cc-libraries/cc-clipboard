@@ -27,9 +27,8 @@ namespace cclib {
 
         int ClipboardMac::init() {
             pasteboard = [NSPasteboard generalPasteboard];
-            changeCount = pasteboard.changeCount;
-            NSLog(@"changeCount: %li", changeCount);
-
+            lastChangeCount = pasteboard.changeCount;
+            lastHash = getCurrentContentNameHash();
             startClipboardMonitor();
 
             return 0;
@@ -47,15 +46,15 @@ namespace cclib {
             // create timer
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-            dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), 0.5 * NSEC_PER_SEC, 0); //timer for 1 seconds
+            dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), 1 * NSEC_PER_SEC, 0); //timer for 1 seconds
             // event handler
             dispatch_source_set_event_handler(_timer, ^{
                 //TODO: call function
                 NSLog(@"-- call startClipboardMonitor function --");
                 if(isClipboardDataChanged()) {
-                    ClipboardData* getClipboardData();
+                    ClipboardData* cc = getCurrentClipboardData();
                 } else {
-                    NSLog(@"-- clipboard data no change --");
+                    // NSLog(@"-- clipboard data no change --");
                 }
             });
 
@@ -67,17 +66,42 @@ namespace cclib {
 
         int ClipboardMac::isClipboardDataChanged() {
             //TODO:
-            if(changeCount == pasteboard.changeCount) {
-                NSLog(@"-- clipboard no changed --");
-                return 0;
-            } else {
-                changeCount = pasteboard.changeCount;
-                NSLog(@"clipboard context count changed to: %li", changeCount);
+            NSUInteger hash = getCurrentContentNameHash();
+            NSLog(@"lastHash %li, hash %li", lastHash, hash);
+            if((lastChangeCount != pasteboard.changeCount) && (lastHash != hash)) {
+                lastChangeCount = pasteboard.changeCount;
+                lastHash = hash;
+                NSLog(@"-- clipboard changed --");
+                return CC_SUCCESS;
             }
-            return 0;
+
+            return CC_FAILED;
         }
 
-        ClipboardData* ClipboardMac::getClipboardData() {
+        NSUInteger ClipboardMac::getCurrentContentNameHash() {
+            IS_POINT_NULL_UINT(pasteboard);
+
+            NSArray *classes = [[NSArray alloc] initWithObjects:[NSString class], nil];
+            NSDictionary *options = [NSDictionary dictionary];
+            NSArray *copiedItems = [pasteboard readObjectsForClasses:classes options:options];
+            //TODO: just concerned about 1 item
+            if (copiedItems != nil && 1 == copiedItems.count) {
+                    NSString *item = copiedItems[0];
+
+                    return item.hash;
+            } else {    //TODO: just get log
+                NSLog(@"type count: %lu", copiedItems.count);
+                for(int i = 0; i < copiedItems.count; i++) {
+                    NSString *item = copiedItems[i];
+                    NSLog(@"text: %@", item);
+                    NSLog(@"text: %li", item.hash);
+                }
+            }
+
+            return CC_UI_FAILED;
+        }
+
+        ClipboardData* ClipboardMac::getCurrentClipboardData() {
             //TODO:
             cout << "call ClipboardMac::getClipboardData" << endl;
             return NULL;
