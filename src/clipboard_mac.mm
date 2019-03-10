@@ -87,9 +87,9 @@ namespace cclib {
             NSArray *copiedItems = [pasteboard readObjectsForClasses:classes options:options];
             //TODO: just concerned about 1 item
             if (copiedItems != nil && 1 == copiedItems.count) {
-                    NSString *item = copiedItems[0];
+                NSString *item = copiedItems[0];
 
-                    return item.hash;
+                return item.hash;
             } else {    //TODO: just get log
                 NSLog(@"type count: %lu", copiedItems.count);
                 for(int i = 0; i < copiedItems.count; i++) {
