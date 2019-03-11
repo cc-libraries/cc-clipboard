@@ -5,14 +5,20 @@
 using namespace std;
 using namespace cclib::ccsys_api;
 
+void func() {
+    cout << "-- call func --" << endl;
+}
+
 int main(int argc, char const *argv[])
 {
     /* code */
     Clipboard* cc = new ClipboardMac();
 
-    int value = cc->foo();
+    Clipboard::ClipboardMonitorCallBackFunc aa;
 
-    cout << value << endl;
+    aa = func;
+
+    cc->clipboardChangeRegistor(aa);
 
     char name[1024];
     cout << "enter input: " << endl;

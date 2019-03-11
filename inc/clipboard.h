@@ -31,10 +31,13 @@ namespace cclib {
                 virtual ~Clipboard();
 
             public:
+                typedef void (* ClipboardMonitorCallBackFunc) ();
+
+            public:
                 int init();
                 virtual int foo() = 0;
 
-                virtual void startClipboardMonitor();
+                virtual void clipboardChangeRegistor(ClipboardMonitorCallBackFunc callBackFunc);
             protected:
                 int flag;
         }; //class clipboard

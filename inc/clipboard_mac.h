@@ -32,7 +32,7 @@ namespace cclib {
             public:
                 int init();
                 int foo();
-                void startClipboardMonitor();
+                void clipboardChangeRegistor(ClipboardMonitorCallBackFunc callBackFunc);
 
             private:
                 int isClipboardDataChanged();

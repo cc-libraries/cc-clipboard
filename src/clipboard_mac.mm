@@ -29,7 +29,7 @@ namespace cclib {
             pasteboard = [NSPasteboard generalPasteboard];
             lastChangeCount = pasteboard.changeCount;
             lastHash = getCurrentContentNameHash();
-            startClipboardMonitor();
+            // startClipboardMonitor();
 
             return 0;
         }
@@ -40,7 +40,7 @@ namespace cclib {
             return value;
         }
 
-        void ClipboardMac::startClipboardMonitor() {
+        void ClipboardMac::clipboardChangeRegistor(ClipboardMonitorCallBackFunc callBackFunc) {
             cout << "-- call ClipboardMac::startClipboardMonitor --" << endl;
 
             // create timer
@@ -53,7 +53,8 @@ namespace cclib {
                 //TODO: call function
                 NSLog(@"-- call startClipboardMonitor function --");
                 if(isClipboardDataChanged()) {
-                    ClipboardData* cc = getCurrentClipboardData();
+                    NSLog(@"-- call callback function --");
+                    callBackFunc();
                 } else {
                     // NSLog(@"-- clipboard data no change --");
                 }
