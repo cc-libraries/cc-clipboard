@@ -13,31 +13,53 @@
 #ifndef CCLIB_CCSYS_API_CLIPBOARD_H_
 #define CCLIB_CCSYS_API_CLIPBOARD_H_
 
+#include <AppKit/AppKit.h>
+#include <AppKit/NSPasteboard.h>
+#include <Foundation/Foundation.h>
+
+#ifdef APPKIT_EXTERN
+#define CC_HEADER 1
+
+#else
+#define CC_HEADER 2
+
+#endif
+
 #include <iostream>
 
 using namespace std;
 
 namespace cclib {
-    
+
     namespace ccsys_api {
-        
+
+        enum ClipboardType {
+            /* type */
+            EN_CB_TEXT,
+            EN_CB_FILES
+        };  //ClipboardType
+
+        // extern "C" {
+
         class Clipboard {
         public:
             Clipboard();
             virtual ~Clipboard();
-            
+
         public:
             bool init();
-            virtual int foo() = 0;
-            
+
             virtual void startClipboardMonitor();
-            
+            ClipboardType checkPasteBoardType(NSString *type);
+
         protected:
             int flag;
         }; //class clipboard
-        
+
+        // }
+
     }   //namespace ccsys
-    
+
 } //namespace cclib
 
 #endif  // CCLIB_CCSYS_API_CLIPBOARD_H_
