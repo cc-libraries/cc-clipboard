@@ -39,8 +39,7 @@ namespace cclib {
 
         struct ClipboardFileData : ClipboardData {
             //TODO: path, name
-        }
-
+        };  //ClipboardFileData
 
     }   //ccsys_api
 
