@@ -66,6 +66,30 @@ namespace cclib {
             cout << "call ClipboardMac::startClipboardMonitor1" << endl;
         }
 
+        ClipboardType ClipboardMac::getClipboardType() {
+            NSArray *supportedTypes = [NSArray arrayWithObjects: NSFilenamesPboardType, NSStringPboardType, nil];
+            NSString *pasteboardType = [pasteboard availableTypeFromArray:supportedTypes];
+
+            clipboardType = checkPasteBoardType(pasteboardType);
+
+            return clipboardType;
+        }
+
+        ClipboardType ClipboardMac::checkPasteBoardType(NSString *type){
+            if([NSFilenamesPboardType isEqualToString:type]) {
+                cout << "checkPasteBoardType: NSFilenamesPboardType" << endl;
+                return EN_CB_FILES;
+            } else if([NSStringPboardType isEqualToString:type]) {
+                cout << "checkPasteBoardType: NSStringPboardType" << endl;
+                return EN_CB_TEXT;
+            } else if([NSRTFDPboardType isEqualToString:type]) {
+                cout << "checkPasteBoardType: NSRTFDPboardType" << endl;
+                return EN_CB_TEXT;
+            }
+
+            return EN_CB_NONE;
+        }
+
         int ClipboardMac::isClipboardDataChanged() {
             //TODO:
             NSUInteger hash = getCurrentContentNameHash();

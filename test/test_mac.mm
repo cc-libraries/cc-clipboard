@@ -18,7 +18,11 @@ int main(int argc, char const *argv[])
 
     aa = func;
 
-    cc->clipboardChangeRegistor(aa);
+    // cc->clipboardChangeRegistor(aa);
+
+    ClipboardType cbType = cc->getClipboardType();
+
+    cout << "ClipboardType: " << cbType << endl;
 
     char name[1024];
     cout << "enter input: " << endl;

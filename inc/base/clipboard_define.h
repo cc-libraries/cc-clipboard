@@ -19,6 +19,7 @@ namespace cclib {
 
         enum ClipboardType {
             /* type */
+            EN_CB_NONE,
             EN_CB_TEXT,
             EN_CB_FILES
         };  //ClipboardType

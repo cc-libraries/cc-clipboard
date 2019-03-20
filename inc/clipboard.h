@@ -36,10 +36,11 @@ namespace cclib {
             public:
                 int init();
                 virtual int foo() = 0;
-
                 virtual void clipboardChangeRegistor(ClipboardMonitorCallBackFunc callBackFunc);
+                virtual ClipboardType getClipboardType();
 
             protected:
+                ClipboardType clipboardType;
                 int flag;
         }; //class clipboard
 

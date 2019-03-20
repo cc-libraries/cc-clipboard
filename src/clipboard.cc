@@ -37,6 +37,12 @@ namespace cclib {
             cout << "call Clipboard::startClipboardMonitor" << endl;
         }
 
+        ClipboardType Clipboard::getClipboardType() {
+            //TODO:
+            cout << "call Clipboard::getClipboardType" << endl;
+            return EN_CB_NONE;
+        }
+
     }   //namespace ccsys_api
 
 } //namespace cclib
