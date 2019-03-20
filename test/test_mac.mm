@@ -21,12 +21,14 @@ int main(int argc, char const *argv[])
     // cc->clipboardChangeRegistor(aa);
 
     ClipboardType cbType = cc->getClipboardType();
-
     cout << "ClipboardType: " << cbType << endl;
 
-    char name[1024];
-    cout << "enter input: " << endl;
-    cin>>name;
+    ClipboardData* cbData = cc->getClipboardData();
+    cout << "ClipboardData bufferData: " << (unsigned char *)cbData->bufferData << endl;
+
+    // char name[1024];
+    // cout << "enter input: " << endl;
+    // cin>>name;
 
     return 0;
 }

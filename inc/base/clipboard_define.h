@@ -30,7 +30,7 @@ namespace cclib {
             ClipboardType type;
             int hash;
             int bufferLength;   //data in buffer length
-            void* data; //data in buffer
+            void *bufferData; //data in buffer
         };  //ClipboardData
 
         struct ClipboardTextData : ClipboardData {

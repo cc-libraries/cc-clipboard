@@ -34,12 +34,13 @@ namespace cclib {
                 int foo();
                 void clipboardChangeRegistor(ClipboardMonitorCallBackFunc callBackFunc);
                 ClipboardType getClipboardType();
+                ClipboardData* getClipboardData();
 
             private:
                 int isClipboardDataChanged();
-                NSUInteger getCurrentContentNameHash();
-                ClipboardData* getCurrentClipboardData();
+                NSUInteger getContentNameHash();
                 ClipboardType checkPasteBoardType(NSString *type);
+                ClipboardData* convertPasteBoardData(NSData* data, ClipboardType type);
 
             private:
                 NSPasteboard* pasteboard;

@@ -28,7 +28,8 @@ namespace cclib {
         int ClipboardMac::init() {
             pasteboard = [NSPasteboard generalPasteboard];
             lastChangeCount = pasteboard.changeCount;
-            lastHash = getCurrentContentNameHash();
+            lastHash = getContentNameHash();
+            clipboardType = getClipboardType();
             // startClipboardMonitor();
 
             return 0;
@@ -54,6 +55,9 @@ namespace cclib {
                 NSLog(@"-- call startClipboardMonitor function --");
                 if(isClipboardDataChanged()) {
                     NSLog(@"-- call callback function --");
+                    clipboardType = getClipboardType();
+                    NSLog(@"clipboardType: %d", clipboardType);
+                    clipboardData = getClipboardData();
                     callBackFunc();
                 } else {
                     // NSLog(@"-- clipboard data no change --");
@@ -70,9 +74,52 @@ namespace cclib {
             NSArray *supportedTypes = [NSArray arrayWithObjects: NSFilenamesPboardType, NSStringPboardType, nil];
             NSString *pasteboardType = [pasteboard availableTypeFromArray:supportedTypes];
 
-            clipboardType = checkPasteBoardType(pasteboardType);
+            ClipboardType cbType = checkPasteBoardType(pasteboardType);
 
-            return clipboardType;
+            return cbType;
+        }
+
+        ClipboardData* ClipboardMac::getClipboardData() {
+            ClipboardData* data = NULL;
+
+            NSLog(@"clipboardType22: %d", clipboardType);
+
+            switch(clipboardType) {
+                case EN_CB_TEXT :
+                {
+                    NSData* textData = [pasteboard dataForType:NSStringPboardType];
+                    data = convertPasteBoardData(textData, EN_CB_TEXT);
+                    break;
+                }
+                case EN_CB_FILES : {
+                    NSData* fileData = [pasteboard dataForType:NSFilenamesPboardType];
+                    data = convertPasteBoardData(fileData, EN_CB_FILES);
+                    break;
+                }
+                default :
+                    NSLog(@"clipboardType: %d is unknown", clipboardType);
+            }
+
+            return data;
+        }
+
+        ClipboardData* ClipboardMac::convertPasteBoardData(NSData* data, ClipboardType type) {
+            ClipboardData* result = NULL;
+            if(EN_CB_TEXT == type) {
+                result = new ClipboardTextData();
+                // int memLength = sizeof(ClipboardTextData) - 4 + data.length;
+                // result = (ClipboardData*) malloc(memLength);
+                // memset(result, 0, memLength);
+                result->type = type;
+                result->hash = data.hash;
+                result->bufferLength = data.length;
+                result->bufferData = (void *)[data bytes];
+            } else if(EN_CB_FILES == type) {
+                //TODO:
+                NSLog(@"type is EN_CB_FILES");
+            }
+
+            return result;
         }
 
         ClipboardType ClipboardMac::checkPasteBoardType(NSString *type){
@@ -92,7 +139,7 @@ namespace cclib {
 
         int ClipboardMac::isClipboardDataChanged() {
             //TODO:
-            NSUInteger hash = getCurrentContentNameHash();
+            NSUInteger hash = getContentNameHash();
             NSLog(@"lastHash %li, hash %li", lastHash, hash);
             if((lastChangeCount != pasteboard.changeCount) && (lastHash != hash)) {
                 lastChangeCount = pasteboard.changeCount;
@@ -104,7 +151,7 @@ namespace cclib {
             return CC_FAILED;
         }
 
-        NSUInteger ClipboardMac::getCurrentContentNameHash() {
+        NSUInteger ClipboardMac::getContentNameHash() {
             IS_POINT_NULL_UINT(pasteboard);
 
             NSArray *classes = [[NSArray alloc] initWithObjects:[NSString class], nil];
@@ -125,12 +172,6 @@ namespace cclib {
             }
 
             return CC_UI_FAILED;
-        }
-
-        ClipboardData* ClipboardMac::getCurrentClipboardData() {
-            //TODO:
-            cout << "call ClipboardMac::getClipboardData" << endl;
-            return NULL;
         }
 
     }   //namespace ccsys_api

@@ -43,6 +43,12 @@ namespace cclib {
             return EN_CB_NONE;
         }
 
+        ClipboardData* Clipboard::getClipboardData() {
+            //TODO:
+            cout << "call Clipboard::getClipboardData" << endl;
+            return NULL;
+        }
+
     }   //namespace ccsys_api
 
 } //namespace cclib
