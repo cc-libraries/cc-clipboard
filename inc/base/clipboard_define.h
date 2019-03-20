@@ -28,9 +28,19 @@ namespace cclib {
         {
             /* data */
             ClipboardType type;
-            int length;
-            void* data;
+            int hash;
+            int bufferLength;   //data in buffer length
+            void* data; //data in buffer
         };  //ClipboardData
+
+        struct ClipboardTextData : ClipboardData {
+            //TODO:
+        };  //ClipboardTextData
+
+        struct ClipboardFileData : ClipboardData {
+            //TODO: path, name
+        }
+
 
     }   //ccsys_api
 
