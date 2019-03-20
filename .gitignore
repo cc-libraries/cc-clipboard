@@ -1,3 +1,4 @@
 out/
 .vscode/
 test/xcode-test-code/cc-clipboard-test.xcodeproj/
+**/main

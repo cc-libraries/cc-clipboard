@@ -12,14 +12,9 @@
 
 #include "../inc/clipboard.h"
 
-// extern "C" {
-    #include <AppKit/AppKit.h>
-    #include <AppKit/NSPasteboard.h>
-    #include <Foundation/Foundation.h>
-    @protocol NSPasteboardType;
-// }
-
-// @protocol NSPasteboardType;
+#include <AppKit/AppKit.h>
+#include <AppKit/NSPasteboard.h>
+#include <Foundation/Foundation.h>
 
 namespace cclib {
 
