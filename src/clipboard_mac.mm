@@ -126,6 +126,7 @@ namespace cclib {
                 cout << "hash: " << fileData.hash << endl;
                 result->bufferLength = CC_UI_INVALID_INIT;  //FIXME:for file the buffer length is no use here
                 // cout << "bufferLength: " << bufferLength << endl;
+                //ERROR:-[__NSArrayM UTF8String]: unrecognized selector sent to instance 0x7fa3a1705150
                 result->searchName = searchName.UTF8String;
                 cout << "searchName: " << searchName.UTF8String;
                 result->bufferData = data;
