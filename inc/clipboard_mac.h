@@ -40,7 +40,7 @@ namespace cclib {
                 int isClipboardDataChanged();
                 NSUInteger getContentNameHash();
                 ClipboardType checkPasteBoardType(NSString *type);
-                ClipboardData* convertPasteBoardData(NSData* data, ClipboardType type);
+                ClipboardData* convertPasteBoardData(id data, ClipboardType type);
 
             private:
                 NSPasteboard* pasteboard;

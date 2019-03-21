@@ -24,7 +24,8 @@ int main(int argc, char const *argv[])
     cout << "ClipboardType: " << cbType << endl;
 
     ClipboardData* cbData = cc->getClipboardData();
-    cout << "ClipboardData bufferData: " << (unsigned char *)cbData->bufferData << endl;
+    // NSString *data = (NSString *)cbData->bufferData;
+    // cout << "ClipboardData bufferData: " << cbData->searchName << endl;
 
     // char name[1024];
     // cout << "enter input: " << endl;

@@ -82,17 +82,15 @@ namespace cclib {
         ClipboardData* ClipboardMac::getClipboardData() {
             ClipboardData* data = NULL;
 
-            NSLog(@"clipboardType22: %d", clipboardType);
-
             switch(clipboardType) {
                 case EN_CB_TEXT :
                 {
-                    NSData* textData = [pasteboard dataForType:NSStringPboardType];
+                    NSString* textData = [pasteboard stringForType:NSStringPboardType];
                     data = convertPasteBoardData(textData, EN_CB_TEXT);
                     break;
                 }
                 case EN_CB_FILES : {
-                    NSData* fileData = [pasteboard dataForType:NSFilenamesPboardType];
+                    id fileData = [pasteboard propertyListForType:NSFilenamesPboardType];
                     data = convertPasteBoardData(fileData, EN_CB_FILES);
                     break;
                 }
@@ -103,20 +101,34 @@ namespace cclib {
             return data;
         }
 
-        ClipboardData* ClipboardMac::convertPasteBoardData(NSData* data, ClipboardType type) {
+        //TODO: create ClipboardDataService class, and this method will be move to ClipboardDataService
+        ClipboardData* ClipboardMac::convertPasteBoardData(id data, ClipboardType type) {
             ClipboardData* result = NULL;
             if(EN_CB_TEXT == type) {
-                result = new ClipboardTextData();
+                NSString *stringData = data;
+                result = new ClipboardTextData();   //FIXME: bufferData length not alloc
                 // int memLength = sizeof(ClipboardTextData) - 4 + data.length;
                 // result = (ClipboardData*) malloc(memLength);
                 // memset(result, 0, memLength);
                 result->type = type;
-                result->hash = data.hash;
-                result->bufferLength = data.length;
-                result->bufferData = (void *)[data bytes];
+                result->hash = stringData.hash;
+                result->bufferLength = stringData.length;
+                result->searchName = stringData.UTF8String;
+                result->bufferData = data;
             } else if(EN_CB_FILES == type) {
                 //TODO:
+                NSData *fileData = data;
+                NSString *searchName = data;
+                result = new ClipboardFileData();   //FIXME: bufferData length not alloc
                 NSLog(@"type is EN_CB_FILES");
+                result->type = type;
+                result->hash = fileData.hash;
+                cout << "hash: " << fileData.hash << endl;
+                result->bufferLength = CC_UI_INVALID_INIT;  //FIXME:for file the buffer length is no use here
+                // cout << "bufferLength: " << bufferLength << endl;
+                result->searchName = searchName.UTF8String;
+                cout << "searchName: " << searchName.UTF8String;
+                result->bufferData = data;
             }
 
             return result;

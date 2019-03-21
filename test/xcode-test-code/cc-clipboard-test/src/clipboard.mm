@@ -60,7 +60,7 @@ namespace cclib {
             //     NSPasteboardItem *item = pasteboardItems[i];
             //     NSLog(@"item: @", item);
             // }
-
+            id cc = nil;
             NSArray *supportedTypes =
             [NSArray arrayWithObjects: NSFilenamesPboardType, NSStringPboardType, NSRTFDPboardType, nil];
             NSString *bestType = [clipboard availableTypeFromArray:supportedTypes];
