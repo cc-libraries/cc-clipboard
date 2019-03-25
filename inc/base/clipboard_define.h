@@ -28,10 +28,10 @@ namespace cclib {
         {
             /* data */
             ClipboardType type;
-            int hash;
-            int bufferLength;   //data in buffer length
-            const char *searchName;
+            unsigned long hash;
+            char *searchName;
             void *bufferData; //data in buffer
+            unsigned long bufferLength;   //data in buffer length TODO: Reserved
         };  //ClipboardData
 
         struct ClipboardTextData : ClipboardData {

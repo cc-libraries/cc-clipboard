@@ -37,11 +37,16 @@ namespace cclib {
                 int init();
                 virtual int foo() = 0;
                 virtual void clipboardChangeRegistor(ClipboardMonitorCallBackFunc callBackFunc);
-                virtual ClipboardType getClipboardType();
+                //NOTICE: atomic operate
+                virtual ClipboardType getType();
+                virtual unsigned long getHash();
+                virtual char* getSearchName();
+                virtual void* getBufferData();
+                virtual unsigned long getBufferLength();
                 virtual ClipboardData* getClipboardData();
 
             protected:
-                ClipboardType clipboardType;
+                //NOTICE: atomic operate
                 ClipboardData* clipboardData;
                 int flag;
         }; //class clipboard

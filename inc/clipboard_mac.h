@@ -33,19 +33,17 @@ namespace cclib {
                 int init();
                 int foo();
                 void clipboardChangeRegistor(ClipboardMonitorCallBackFunc callBackFunc);
-                ClipboardType getClipboardType();
-                ClipboardData* getClipboardData();
 
             private:
-                int isClipboardDataChanged();
-                NSUInteger getContentNameHash();
-                ClipboardType checkPasteBoardType(NSString *type);
-                ClipboardData* convertPasteBoardData(id data, ClipboardType type);
+                int isClipboardDataChanged(NSData* cbData);
+                int setClipboardData(NSData* data, NSString* type);
 
             private:
-                NSPasteboard* pasteboard;
+                NSPasteboard *pasteboard;
                 NSInteger lastChangeCount;
                 NSUInteger lastHash;
+                NSData *pasteboardData;
+                // NSString* searchName;
 
         };  //class ClipboardMac
     }

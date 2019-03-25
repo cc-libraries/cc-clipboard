@@ -37,16 +37,34 @@ namespace cclib {
             cout << "call Clipboard::startClipboardMonitor" << endl;
         }
 
-        ClipboardType Clipboard::getClipboardType() {
+        ClipboardType Clipboard::getType() {
             //TODO:
-            cout << "call Clipboard::getClipboardType" << endl;
-            return EN_CB_NONE;
+            return clipboardData->type;
+        }
+
+        unsigned long Clipboard::getHash() {
+            //TODO:
+            return clipboardData->hash;
+        }
+
+        char* Clipboard::getSearchName() {
+            //TODO:
+            return clipboardData->searchName;
+        }
+
+        void* Clipboard::getBufferData() {
+            //TODO:
+            return clipboardData->bufferData;
+        }
+
+        unsigned long Clipboard::getBufferLength() {
+            //TODO:
+            return clipboardData->bufferLength;
         }
 
         ClipboardData* Clipboard::getClipboardData() {
             //TODO:
-            cout << "call Clipboard::getClipboardData" << endl;
-            return NULL;
+            return clipboardData;
         }
 
     }   //namespace ccsys_api
