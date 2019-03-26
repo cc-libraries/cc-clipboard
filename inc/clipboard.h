@@ -44,10 +44,11 @@ namespace cclib {
                 virtual void* getBufferData();
                 virtual unsigned long getBufferLength();
                 virtual ClipboardData* getClipboardData();
+                virtual int setClipboardData(ClipboardData* data) = 0;
 
             protected:
                 //NOTICE: atomic operate
-                ClipboardData clipboardData;
+                ClipboardData clipboardData;    //FIXME: bufferData length not alloc
                 int flag;
         }; //class clipboard
 

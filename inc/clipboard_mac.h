@@ -33,10 +33,11 @@ namespace cclib {
                 int init();
                 int foo();
                 void clipboardChangeRegistor(ClipboardMonitorCallBackFunc callBackFunc);
+                virtual int setClipboardData(ClipboardData* data);
 
             private:
                 int isClipboardDataChanged(NSData* cbData);
-                int setClipboardData(NSData* data, NSString* type, NSString* name);
+                int convertClipboardData(NSData* data, NSString* strData, NSString* type, NSString* name);
 
             private:
                 NSPasteboard *pasteboard;
