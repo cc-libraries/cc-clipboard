@@ -78,27 +78,27 @@ namespace cclib {
         int ClipboardMac::setClipboardData(NSData* data, NSString* type, NSString* name) {
             IS_POINT_NULL_INT(data);
 
-            ClipboardData* result = new ClipboardData();    //FIXME: bufferData length not alloc
+            // ClipboardData* result = new ClipboardData();    //FIXME: bufferData length not alloc
             // int memLength = sizeof(ClipboardTextData) - 4 + data.length;
             // result = (ClipboardData*) malloc(memLength);
             // memset(result, 0, memLength);
             if([NSFilenamesPboardType isEqualToString:type]) {
                 cout << "setClipboardData: NSFilenamesPboardType" << endl;
-                result->type = EN_CB_FILES;
+                clipboardData.type = EN_CB_FILES;
             } else if([NSStringPboardType isEqualToString:type]) {
                 cout << "setClipboardData: NSStringPboardType" << endl;
-                result->type = EN_CB_TEXT;
+                clipboardData.type = EN_CB_TEXT;
             } else if([NSRTFDPboardType isEqualToString:type]) {
                 cout << "setClipboardData: NSRTFDPboardType" << endl;
-                result->type = EN_CB_NONE;
+                clipboardData.type = EN_CB_NONE;
                 return CC_FAILED;
             }
 
-            result->hash = data.hash;
-            result->bufferLength = data.length;
+            clipboardData.hash = data.hash;
+            clipboardData.bufferLength = data.length;
             cout << "setClipboardData: name: " << name.UTF8String << endl;
-            result->searchName = (char*)name.UTF8String;
-            result->bufferData = data;
+            clipboardData.searchName = (char*)name.UTF8String;
+            clipboardData.bufferData = data;
 
             return CC_SUCCESS;
         }

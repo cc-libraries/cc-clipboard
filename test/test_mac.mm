@@ -20,8 +20,8 @@ int main(int argc, char const *argv[])
 
     cc->clipboardChangeRegistor(aa);
 
-    // ClipboardType cbType = cc->getClipboardType();
-    // cout << "ClipboardType: " << cbType << endl;
+    ClipboardType cbType = cc->getType();
+    cout << "---- ClipboardType: ----" << cbType << endl;
 
     // ClipboardData* cbData = cc->getClipboardData();
     // NSString *data = (NSString *)cbData->bufferData;

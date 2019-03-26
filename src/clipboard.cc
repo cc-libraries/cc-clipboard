@@ -39,32 +39,32 @@ namespace cclib {
 
         ClipboardType Clipboard::getType() {
             //TODO:
-            return clipboardData->type;
+            return clipboardData.type;
         }
 
         unsigned long Clipboard::getHash() {
             //TODO:
-            return clipboardData->hash;
+            return clipboardData.hash;
         }
 
         char* Clipboard::getSearchName() {
             //TODO:
-            return clipboardData->searchName;
+            return clipboardData.searchName;
         }
 
         void* Clipboard::getBufferData() {
             //TODO:
-            return clipboardData->bufferData;
+            return clipboardData.bufferData;
         }
 
         unsigned long Clipboard::getBufferLength() {
             //TODO:
-            return clipboardData->bufferLength;
+            return clipboardData.bufferLength;
         }
 
         ClipboardData* Clipboard::getClipboardData() {
             //TODO:
-            return clipboardData;
+            return &clipboardData;
         }
 
     }   //namespace ccsys_api

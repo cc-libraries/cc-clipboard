@@ -47,7 +47,7 @@ namespace cclib {
 
             protected:
                 //NOTICE: atomic operate
-                ClipboardData* clipboardData;
+                ClipboardData clipboardData;
                 int flag;
         }; //class clipboard
 
