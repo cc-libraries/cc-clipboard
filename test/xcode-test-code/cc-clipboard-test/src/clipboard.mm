@@ -41,10 +41,6 @@ namespace cclib {
             //TODO:
             cout << "call Clipboard::startClipboardMonitor" << endl;
 
-            int cc = CC_HEADER;
-
-            cout << "cc : " << cc << endl;
-
             NSPasteboard* clipboard = [NSPasteboard generalPasteboard];
             // NSString *pasteboardName = clipboard.NSPasteboardName;
             NSArray<NSPasteboardItem *> *pasteboardItems = clipboard.pasteboardItems;

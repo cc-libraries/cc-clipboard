@@ -18,18 +18,18 @@ int main(int argc, char const *argv[])
 
     aa = func;
 
-    // cc->clipboardChangeRegistor(aa);
+    cc->clipboardChangeRegistor(aa);
 
-    ClipboardType cbType = cc->getClipboardType();
-    cout << "ClipboardType: " << cbType << endl;
+    // ClipboardType cbType = cc->getClipboardType();
+    // cout << "ClipboardType: " << cbType << endl;
 
-    ClipboardData* cbData = cc->getClipboardData();
+    // ClipboardData* cbData = cc->getClipboardData();
     // NSString *data = (NSString *)cbData->bufferData;
     // cout << "ClipboardData bufferData: " << cbData->searchName << endl;
 
-    // char name[1024];
-    // cout << "enter input: " << endl;
-    // cin>>name;
+    char name[1024];
+    cout << "enter input: " << endl;
+    cin>>name;
 
     return 0;
 }

@@ -15,8 +15,7 @@
 
 #define CC_NULL NULL
 #define CC_SUCCESS 1
-#define CC_FAILED -1
-#define CC_UI_FAILED 0
+#define CC_FAILED 0
 
 #define IS_POINT_NULL_POINT(point) \
 if(NULL == point) {\
@@ -25,7 +24,7 @@ if(NULL == point) {\
 
 #define IS_POINT_NULL_INT(point) \
 if(NULL == point) {\
-    return CC_UI_FAILED;\
+    return CC_FAILED;\
 }\
 
 #define IS_POINT_NULL_UINT(point) \

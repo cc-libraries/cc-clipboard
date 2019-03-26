@@ -36,14 +36,12 @@ namespace cclib {
 
             private:
                 int isClipboardDataChanged(NSData* cbData);
-                int setClipboardData(NSData* data, NSString* type);
+                int setClipboardData(NSData* data, NSString* type, NSString* name);
 
             private:
                 NSPasteboard *pasteboard;
                 NSInteger lastChangeCount;
                 NSUInteger lastHash;
-                NSData *pasteboardData;
-                // NSString* searchName;
 
         };  //class ClipboardMac
     }

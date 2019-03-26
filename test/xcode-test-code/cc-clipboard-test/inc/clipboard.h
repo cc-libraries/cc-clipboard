@@ -17,14 +17,6 @@
 #include <AppKit/NSPasteboard.h>
 #include <Foundation/Foundation.h>
 
-#ifdef APPKIT_EXTERN
-#define CC_HEADER 1
-
-#else
-#define CC_HEADER 2
-
-#endif
-
 #include <iostream>
 
 using namespace std;
