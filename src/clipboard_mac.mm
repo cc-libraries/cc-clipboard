@@ -75,6 +75,9 @@ namespace cclib {
         int ClipboardMac::setClipboardData(ClipboardData* data){
             IS_POINT_NULL_INT(data);
 
+            //FIXED: fix setString failed error
+            [pasteboard clearContents];
+
             if(EN_CB_FILES == data->type) {
                 NSData* buffer = (NSData*)data->bufferData;
                 cout << "setClipboardData: NSFilenamesPboardType" << endl;
