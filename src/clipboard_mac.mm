@@ -103,7 +103,7 @@ namespace cclib {
             if([NSFilenamesPboardType isEqualToString:type]) {
                 cout << "convertClipboardData: NSFilenamesPboardType" << endl;
                 clipboardData.type = EN_CB_FILES;
-                clipboardData.bufferData = fileData;
+                clipboardData.bufferData = data;
             } else if([NSStringPboardType isEqualToString:type]) {
                 cout << "convertClipboardData: NSStringPboardType" << endl;
                 clipboardData.type = EN_CB_TEXT;
