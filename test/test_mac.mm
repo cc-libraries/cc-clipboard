@@ -9,7 +9,7 @@ Clipboard* cc = new ClipboardMac();
 Clipboard::ClipboardMonitorCallBackFunc aa;
 
 ClipboardData* cbData1 = NULL;
-ClipboardData* cbData2 = new ClipboardData();
+ClipboardData* cbData2 = NULL;
 
 // NSString* buffer1 = @"buffer1";
 // NSString* buffer2 = @"buffer2";
@@ -24,17 +24,19 @@ void func() {
     if(0 == flag) {
         cout << "-- func1: --" << endl;
         ClipboardData* cbData = cc->getClipboardData();
-        cbData1 = (ClipboardData*) malloc(sizeof(ClipboardData)  - 4 + cbData->bufferLength );
+        cbData1 = (ClipboardData*) malloc(sizeof(ClipboardData));
+        // cbData1 = cbData;
         // cout << "-- func1: --" << sizeof(ClipboardData) - 4 + cbData->bufferLength << endl;
         // buffer1 = (NSString *)cbData->bufferData;
-        memcpy(cbData1, cbData, sizeof(ClipboardData) -4 + cbData->bufferLength);
+        memcpy(cbData1, cbData, sizeof(ClipboardData));
         flag = 1;
         flag1 = 1;
     } else {
         cout << "-- func4: --" << endl;
         ClipboardData* cbData = cc->getClipboardData();
-        cbData2 = (ClipboardData*) malloc(sizeof(ClipboardData)  - 4 + cbData->bufferLength );
-        memcpy(cbData2, cbData, sizeof(ClipboardData) -4 + cbData->bufferLength);
+        cbData2 = cbData;
+        cbData2 = (ClipboardData*) malloc(sizeof(ClipboardData));
+        memcpy(cbData2, cbData, sizeof(ClipboardData));
         // buffer1 = (NSString *)cbData->bufferData;
         flag = 0;
         flag2 = 1;
@@ -45,9 +47,9 @@ void func() {
         cout << "cb1: " << cbData1 << endl;
         cout << "cb2: " << cbData2 << endl;
         NSString* buffer1 = (NSString *)cbData1->bufferData;
-        NSLog(@"text1: %@", buffer1);
+        // NSLog(@"text1: %@", buffer1);
         NSString* buffer2 = (NSString *)cbData2->bufferData;
-        NSLog(@"text2: %@", buffer2);
+        // NSLog(@"text2: %@", buffer2);
 
         if(0 == flag) {
             cout << "--- func2: ---" << endl;

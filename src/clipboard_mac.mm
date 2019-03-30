@@ -54,16 +54,17 @@ namespace cclib {
                 NSString *type = [pasteboard availableTypeFromArray:supportedTypes];
                 NSData* cbData = [pasteboard dataForType:type];
                 NSString* strData = [pasteboard stringForType:type];
-                NSString* textData = [pasteboard stringForType:type];
+                id fileData = [pasteboard propertyListForType:type];
 
                 if(isClipboardDataChanged(cbData)) {
                     //COMMENT: get searchName
                     NSArray *classes = [[NSArray alloc] initWithObjects:[NSString class], nil];
                     NSDictionary *options = [NSDictionary dictionary];
                     NSArray *copiedItems = [pasteboard readObjectsForClasses:classes options:options];
+                    cout << "-- call ClipboardMac::startClipboardMonitor1 --" << endl;
                     NSString *name = copiedItems[0];    //COMMENT: if clipboard must have search name
 
-                    convertClipboardData(cbData, strData, type, name);
+                    convertClipboardData(cbData, fileData, strData, type, name);
                     callBackFunc();
                 }
             });
@@ -79,20 +80,21 @@ namespace cclib {
             [pasteboard clearContents];
 
             if(EN_CB_FILES == data->type) {
-                NSData* buffer = (NSData*)data->bufferData;
+                id buffer = (id)data->bufferData;
                 cout << "setClipboardData: NSFilenamesPboardType" << endl;
-                return [pasteboard setData:buffer forType:NSFilenamesPboardType];
+                //ERROR: Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'Could not write property list with invalid format to the pasteboard.  The object contains non-property list types: __NSSetM'
+                return [pasteboard setPropertyList:buffer forType:NSFilenamesPboardType];
             } else if(EN_CB_TEXT == data->type) {
                 NSString* buffer = (NSString*)data->bufferData;
                 cout << "setClipboardData: NSStringPboardType" << endl;
                 return [pasteboard setString:buffer forType:NSStringPboardType];
             } else {
-                cout << "convertClipboardData: NSRTFDPboardType" << endl;
+                cout << "setClipboardData: NSRTFDPboardType" << endl;
                 return CC_INVALID;
             }
         }
 
-        int ClipboardMac::convertClipboardData(NSData* data, NSString* strData, NSString* type, NSString* name) {
+        int ClipboardMac::convertClipboardData(NSData* data, id fileData, NSString* strData, NSString* type, NSString* name) {
             IS_POINT_NULL_INT(data);
 
             // int memLength = sizeof(ClipboardTextData) - 4 + data.length;
@@ -101,7 +103,7 @@ namespace cclib {
             if([NSFilenamesPboardType isEqualToString:type]) {
                 cout << "convertClipboardData: NSFilenamesPboardType" << endl;
                 clipboardData.type = EN_CB_FILES;
-                clipboardData.bufferData = data;
+                clipboardData.bufferData = fileData;
             } else if([NSStringPboardType isEqualToString:type]) {
                 cout << "convertClipboardData: NSStringPboardType" << endl;
                 clipboardData.type = EN_CB_TEXT;

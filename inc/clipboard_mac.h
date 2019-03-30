@@ -37,7 +37,7 @@ namespace cclib {
 
             private:
                 int isClipboardDataChanged(NSData* cbData);
-                int convertClipboardData(NSData* data, NSString* strData, NSString* type, NSString* name);
+                int convertClipboardData(NSData* data, id fileData, NSString* strData, NSString* type, NSString* name);
 
             private:
                 NSPasteboard *pasteboard;
