@@ -1,0 +1,54 @@
+2019-03-30 23:26:08.509 test_mac[2090:23157] -- clipboard changed --
+-- call ClipboardMac::startClipboardMonitor1 --
+convertClipboardData: NSStringPboardType
+convertClipboardData: name: NSDictionary
+---- ClipboardType: ----1
+-- func4: --
+cb1: 0x7fd468c1f460
+cb2: 0x7fd468c08650
+--- func2: ---
+setClipboardData: NSStringPboardType
+--- func21: ---1
+2019-03-30 23:26:09.510 test_mac[2090:23157] -- clipboard changed --
+-- call ClipboardMac::startClipboardMonitor1 --
+convertClipboardData: NSFilenamesPboardType
+convertClipboardData: name: demo1.log
+---- ClipboardType: ----2
+-- func1: --
+cb1: 0x7fd468c20560
+cb2: 0x7fd468c08650
+--- func3: ---
+setClipboardData: NSStringPboardType
+--- func31: ---1
+2019-03-30 23:26:10.509 test_mac[2090:23157] -- clipboard changed --
+-- call ClipboardMac::startClipboardMonitor1 --
+convertClipboardData: NSStringPboardType
+convertClipboardData: name: NSDictionary
+---- ClipboardType: ----1
+-- func4: --
+cb1: 0x7fd468c20560
+cb2: 0x7fd468c1c6d0
+--- func2: ---
+setClipboardData: NSFilenamesPboardType
+2019-03-30 23:26:10.511 test_mac[2090:23157] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'Could not write property list with invalid format to the pasteboard.  The object contains non-property list types: __NSSetM'
+*** First throw call stack:
+(
+        0   CoreFoundation                      0x00007fffa3d132cb __exceptionPreprocess + 171
+        1   libobjc.A.dylib                     0x00007fffb8b4448d objc_exception_throw + 48
+        2   CoreFoundation                      0x00007fffa3d13219 -[NSException raise] + 9
+        3   AppKit                              0x00007fffa1a19662 +[NSPasteboard _convertPropertyListToData:] + 382
+        4   AppKit                              0x00007fffa1a194c5 -[NSPasteboard setPropertyList:forType:] + 40
+        5   libclipboard.so                     0x00000001017e49da _ZN5cclib9ccsys_api12ClipboardMac16setClipboardDataEPNS0_13ClipboardDataE + 202
+        6   test_mac                            0x00000001017d8655 _Z4funcv + 757
+        7   libclipboard.so                     0x00000001017e45f8 ___ZN5cclib9ccsys_api12ClipboardMac23clipboardChangeRegistorEPFvvE_block_invoke + 536
+        8   libdispatch.dylib                   0x00007fffb94488fc _dispatch_client_callout + 8
+        9   libdispatch.dylib                   0x00007fffb945da16 _dispatch_continuation_pop + 533
+        10  libdispatch.dylib                   0x00007fffb9453a6c _dispatch_source_latch_and_call + 194
+        11  libdispatch.dylib                   0x00007fffb944b13b _dispatch_source_invoke + 1248
+        12  libdispatch.dylib                   0x00007fffb944a6b5 _dispatch_root_queue_drain + 476
+        13  libdispatch.dylib                   0x00007fffb944a48c _dispatch_worker_thread3 + 99
+        14  libsystem_pthread.dylib             0x00007fffb96975a2 _pthread_wqthread + 1299
+        15  libsystem_pthread.dylib             0x00007fffb969707d start_wqthread + 13
+)
+libc++abi.dylib: terminating with uncaught exception of type NSException
+make: *** [test] Abort trap: 6
